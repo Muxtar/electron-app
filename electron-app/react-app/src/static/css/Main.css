@@ -1,9 +1,107 @@
+:root{
+    --input: #343449; 
+    --back: #2f303f;
+}
+
 *{
     margin: 0;
     padding: 0;
     /* background-color: red; */
 }
 
-div.body{
-    background-color: red;
+div.main-page  header{
+    /* height: 60px; */
+    display: flex;
+    justify-content: right;
+    background-color: var(--input);
+    z-index:1; 
+    padding: 10px;
+}
+div.user{
+    height: 100%;
+    width: 10%;
+    margin-right: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+div.user > div.username{
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+div.user > div.username > p{
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    padding-left: 10px;
+    font-size: 18px;
+    text-transform: capitalize;
+    color: rgb(200, 200, 200);
+    cursor: pointer;
+
+}
+
+div.user  div.icon{
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgb(100, 100, 100);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+div.main-page  div.icon:hover{
+    background-color: rgb(80, 80, 80);
+}
+div.main-page  div.icon:hover + div.username > p{
+    color: white;
+}
+div.user:hover > div.user-about{
+    display: flex;
+}
+
+div.main-page div.icon > i{
+    display: block;
+    font-size: 25px;
+    height: max-content;
+}
+div.user-about{
+    border: 1px solid var(--back);
+    position: absolute;
+    background-color: var(--back);
+    right: 0;
+    top: 60px;
+    width: 250px;
+    padding: 15px;
+    min-height: 150px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom-left-radius: 30px;
+    display: none;
+}
+
+div.notifaction{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+
+div.notifaction > i{
+    font-size: 15px;
+    margin: 5px;
+    padding: 12px;
+    border: 2px solid rgb(100, 100, 100);
+    cursor: pointer;
+}
+
+div.notifaction > i:hover{
+    /* color: rgb(100, 100, 100); */
+    border-color: rgb(200, 200, 200);
 }

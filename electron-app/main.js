@@ -86,7 +86,7 @@ function createMainWindow(){
         title:'Main',
         show:false
     })
-    mainWindow.webContents.openDevTools();
+    // mainWindow.webContents.openDevTools();
     mainWindow.loadURL('http://localhost:3000/main')
     // mainWindow.loadURL(`${startUrl}#/main`)
 
@@ -95,16 +95,14 @@ function createMainWindow(){
 
     mainWindow.on('ready-to-show', ()=>{
         mainWindow.show()
-        mainWindow.webContents.send('user', JSON.stringify({username:user.username, token:secretKey}));
-        console.log(typeof user);
-        console.log(JSON.stringify(user));
+        mainWindow.webContents.send('user', JSON.stringify({username:user.username, token:secretKey, isadmin:user.isadmin}));
     })
 }
 
 // login pencersi
 function createLoginWindow(){
     loginWindow = new BrowserWindow({
-        width: 800,
+        width: 400,
         height: 600,
         webPreferences:{
             preload:path.join(__dirname, './preload.js'),
@@ -114,7 +112,7 @@ function createLoginWindow(){
         show:false
     })
 
-    loginWindow.webContents.openDevTools()
+    // loginWindow.webContents.openDevTools()
     // loginWindow.loadURL(startUrl)
     loginWindow.loadURL('http://localhost:3000');
     // loginWindow.setResizable(false);
