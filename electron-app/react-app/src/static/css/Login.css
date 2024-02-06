@@ -1,0 +1,102 @@
+:root{
+    /* create variable */
+    --back: #2f303f;
+    --input: #343449; 
+  }
+  
+  html, body, #root, .Login{
+    height: 100%;
+  }
+  
+  div.form{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  div.main{
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--back);  /* use variable */
+    width: 100%;
+    height: 100%;
+  }
+  
+  div.main > form{
+    width: 100%;
+    margin-top: -50px;
+  }
+  
+  div.group{
+    margin: 20px;
+  }
+  
+  div.group > input, button{
+    display: block;
+    width: 100%;
+    padding: 8px;
+    padding-left: 30px;
+    background-color: var(--input); /* use variable */
+    border: 1px solid rgb(100, 100, 100);
+    color: rgb(200, 200, 200);
+    border-radius: 2px;
+    font-size: 13px;
+  }
+  
+  div.group > :not(input[type=button]):focus{
+    outline: 1px solid rgb(200, 200, 200);
+  }
+  
+  div.group > button{
+    padding-left: 0;
+  }
+  div.group > button > i{
+    padding-left: 10px;
+  }
+  
+  div.group > i.fa-eye, i.fa-eye-slash{
+    right: 0;
+    cursor: pointer;
+  }
+  
+  div.group > button:hover{
+    box-shadow: 0 0 2px 0 rgb(200, 200, 200);
+  }
+  div.group > button:hover > i{
+    color: tomato;
+  }
+  
+  
+  div.icon{
+    position: relative;
+  }
+  
+  div.icon > i{
+    height: 100%;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    color: rgb(150, 150, 150);
+    font-size: 13px;
+  }
+  
+  div.error{
+    position: absolute;
+    left: -250px;
+    top: 50px;
+    width: 250px;
+    transition: 1s;
+  
+  }
+  div.error > p{
+    background-color: tomato;
+    /* color: tomato; */
+    color: white;
+    font-size: 13px;
+    padding: 10px;
+    text-align: center;
+  }

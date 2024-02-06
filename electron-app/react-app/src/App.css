@@ -1,0 +1,9 @@
+:root{
+  /* create variable */
+  --back: #2f303f;
+  --input: #343449; 
+}
+
+html, body, #root, .App{
+  height: 100%;
+}

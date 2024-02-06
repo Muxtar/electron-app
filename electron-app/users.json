@@ -1,0 +1,15 @@
+{
+    "users":
+    [
+        {
+            "isAdmin":true,
+            "username":"muxtar",
+            "password":"1992"
+        },
+        {
+            "isAdmin":false,
+            "username":"sebuhi",
+            "password":"1989"
+        }
+    ]
+}

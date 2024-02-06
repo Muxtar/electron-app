@@ -1,0 +1,6 @@
+/electron-app/node_modules
+/electron-app/release-builds
+/electron-app/react-app/node_modules
+/fastAPI-server/venv
+/fastAPI-server/__pycache__
+/fastAPI-server/datas/
