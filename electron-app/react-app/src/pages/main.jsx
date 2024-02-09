@@ -11,10 +11,14 @@ export default function Main(){
         // console.log(data)
     })
     return(
-        <div className="">
-            {/* <header>{username}</header> */}
+        <div className="blog1">
+            <header>
+                <div className="user-about">
+                    <div className="username">{user.username}</div>
+                </div>
+            </header>
             <div className="body">
-                <div className="chat">user =={user.username}</div>
+                <div className="chat"></div>
             </div>
         </div>
     )

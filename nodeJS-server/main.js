@@ -5,6 +5,7 @@ const http = require('http');
 const fs = require('fs');
 const cors = require('cors');
 const {logRequest} = require('./middleware.js')
+// const xhttp = new XMLHttpRequest();
 
 
 const app = express();

@@ -3,7 +3,17 @@
     padding: 0;
     /* background-color: red; */
 }
+div.blog1{
+    border: 1px solid green;
+    height: 100%;
+}
 
+header{
+    border: 1px solid black;
+    height: 30px;
+}
 div.body{
-    background-color: red;
+    border: 1px solid red;
+    height: 100%;
+    color:  blue;
 }
