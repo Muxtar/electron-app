@@ -10,7 +10,7 @@ contextBridge.exposeInMainWorld('LOGIN', {
 })
 
 contextBridge.exposeInMainWorld('EXIT', {
-    send: (data)=>{ipcRenderer.send('exit', data);}
+    send: ()=>{ipcRenderer.send('exit', 'exit');}
 })
 
 contextBridge.exposeInMainWorld('DOWNLOAD', {
@@ -21,7 +21,6 @@ contextBridge.exposeInMainWorld('DOWNLOAD', {
 // main
 contextBridge.exposeInMainWorld('USER', {
     download: (data) =>{
-        console.log('isledi', data)
         ipcRenderer.on('user', data)
     }
 })

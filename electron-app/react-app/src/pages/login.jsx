@@ -29,7 +29,7 @@ function Login() {
         divError.current.style.left = '0px'
       }else if(data == 'server-error'){
         divError.current.children[0].style.backgroundColor = "red";
-        divError.current.children[0].innerHTML = 'Server not';
+        divError.current.children[0].innerHTML = 'Server not found !!';
         divError.current.style.left = '0px'
       }
       setTimeout(()=>{
