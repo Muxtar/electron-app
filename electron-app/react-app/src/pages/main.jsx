@@ -7,7 +7,7 @@ import '../static/css/Main.css';
 
 const TreeDiagram = ({ data }) => {
     const d3Container = useRef(null);
-  
+     // new comment
     useEffect(() => {
       if (data && d3Container.current) {
         // Container cleanup
