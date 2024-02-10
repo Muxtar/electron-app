@@ -2,13 +2,16 @@
     "users":[
         {
             "isadmin":false,
+            "token":"qpm1029453a!!@!12()&^%%$#@!lsISY9401",
             "username":"sebuhi",
             "password":"1988"
         },
         {
             "isadmin":true,
+            "token":"?<<1MQL3woruyADmnajs172917263)(*&%#$@!ABS",
             "username":"muxtar",
             "password":"1992"
+
         }
     ]
 }

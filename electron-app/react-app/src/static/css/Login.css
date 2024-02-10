@@ -34,7 +34,7 @@
     margin: 20px;
   }
   
-  div.group > input, button{
+  div.group > input, div.group > button{
     display: block;
     width: 100%;
     padding: 8px;

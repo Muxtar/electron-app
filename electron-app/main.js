@@ -1,8 +1,9 @@
 'use strict'
-const { app, BrowserWindow, Menu, ipcMain } = require('electron/main');
+
+// ELECTRON MAIN FILE
+const { app, BrowserWindow, Menu, ipcMain, screen } = require('electron/main');
 const url = require('url');
 const path = require('path');
-// const fs = require('fs');
 
 let loginWindow, mainWindow, user;
 const secretKey = '109342!(&(()))_+awqxbcvasapoqwpquzha)*^^%#@$4724';
@@ -52,12 +53,29 @@ ipcMain.on('login', (event, data)=>{
     loginRequest(data.username, data.password);
 })
 
-
 ipcMain.on('exit', (event, data)=>{
     if(data == 'exit'){
         mainWindow.close();
         createLoginWindow();
+        user = '';
     }
+})
+
+ipcMain.on('sqlQuery', (event, data)=>{
+    // console.log(data)
+    fetch('http://127.0.0.1:8000/sql-query', {
+                method:'POST',
+                headers:{
+                    'Content-Type':'application/text-plain'
+                },
+                body:JSON.stringify(data)
+            }).then(data => {
+                return data.json()
+            }).then(data => {
+                console.log(data)
+            }).catch(()=>{
+                console.log('error yarandi')
+            })
 })
 
 const loginTemplate = []
@@ -77,25 +95,28 @@ const mainTemplate = [
 
 // ana ekran penceresi
 function createMainWindow(){
+    const { width, height } = screen.getPrimaryDisplay().workAreaSize;
+
     mainWindow = new BrowserWindow({
         width: 1200,
-        height: 1000,
+        height: 800,
+        minWidth: 800,
+        minHeight: 500,
         webPreferences:{
             preload:path.join(__dirname, './preload.js')
         },
         title:'Main',
         show:false
     })
-    // mainWindow.webContents.openDevTools();
+    mainWindow.webContents.openDevTools();
     mainWindow.loadURL('http://localhost:3000/main')
     // mainWindow.loadURL(`${startUrl}#/main`)
-
-    const mainMenu = Menu.buildFromTemplate(mainTemplate);
-    Menu.setApplicationMenu(mainMenu);
+    // const mainMenu = Menu.buildFromTemplate(mainTemplate);
+    // Menu.setApplicationMenu(mainMenu);
 
     mainWindow.on('ready-to-show', ()=>{
         mainWindow.show()
-        mainWindow.webContents.send('user', JSON.stringify({username:user.username, token:secretKey, isadmin:user.isadmin}));
+        mainWindow.webContents.send('user', JSON.stringify({username:user.username, isadmin:user.isadmin}));
     })
 }
 
@@ -104,6 +125,7 @@ function createLoginWindow(){
     loginWindow = new BrowserWindow({
         width: 400,
         height: 600,
+        resizable:false,
         webPreferences:{
             preload:path.join(__dirname, './preload.js'),
         },

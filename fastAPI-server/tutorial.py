@@ -1,44 +1,44 @@
-# import time
-# import numpy as np
+import time
+import numpy as np
 import datetime
 data = 11
 
-# X_train = np.random.randn(100, 10) 
-# y_train = np.random.randint(0, 2, (100,))  
+X_train = np.random.randn(100, 10) 
+y_train = np.random.randint(0, 2, (100,))  
 
 
-# def train_model(X, y, epochs=10):
-#     total_start_time = time.time()
-#     for epoch in range(1, epochs + 1):
-#         start_time = time.time()
+def train_model(X, y, epochs=10):
+    total_start_time = time.time()
+    for epoch in range(1, epochs + 1):
+        start_time = time.time()
                
-#         time.sleep(1)
+        time.sleep(1)
         
-#         epoch_duration = time.time() - start_time
-#         total_duration = time.time() - total_start_time
-#         estimated_total_duration = epoch_duration * epochs
-#         remaining_time = estimated_total_duration - total_duration
+        epoch_duration = time.time() - start_time
+        total_duration = time.time() - total_start_time
+        estimated_total_duration = epoch_duration * epochs
+        remaining_time = estimated_total_duration - total_duration
         
-#         print(f"Epoch {epoch}/{epochs} texmini vaxt {remaining_time:.2f} saniye.")
+        print(f"Epoch {epoch}/{epochs} texmini vaxt {remaining_time:.2f} saniye.")
 
 
-# def memory_efficient_shuffle(melanoma_ds=str, no_melanoma_portion=str):
-#   shuffle_rounds = 4
-#   tmp_start = 0
-#   batch_each_class = 2500
-#   final_shuffle_ds = None
+def memory_efficient_shuffle(melanoma_ds=str, no_melanoma_portion=str):
+  shuffle_rounds = 4
+  tmp_start = 0
+  batch_each_class = 2500
+  final_shuffle_ds = None
 
-#   for i in range(shuffle_rounds):
-#     tmp_start = batch_each_class * i
-#     tmp_melanoma_ds = melanoma_ds.skip(tmp_start).take(batch_each_class)
-#     tmp_no_melanoma_ds = no_melanoma_portion.skip(tmp_start).take(batch_each_class)
-#     both_portions_ds = tmp_melanoma_ds.concatenate(tmp_no_melanoma_ds)
-#     shuffled_portion_ds = both_portions_ds.shuffle(5000)
+  for i in range(shuffle_rounds):
+    tmp_start = batch_each_class * i
+    tmp_melanoma_ds = melanoma_ds.skip(tmp_start).take(batch_each_class)
+    tmp_no_melanoma_ds = no_melanoma_portion.skip(tmp_start).take(batch_each_class)
+    both_portions_ds = tmp_melanoma_ds.concatenate(tmp_no_melanoma_ds)
+    shuffled_portion_ds = both_portions_ds.shuffle(5000)
     
-#     final_shuffled_ds = shuffled_portion_ds if final_shuffle_ds == None else final_shuffle_ds.concatenate(shuffled_portion_ds)
-#   return final_shuffled_ds
+    final_shuffled_ds = shuffled_portion_ds if final_shuffle_ds == None else final_shuffle_ds.concatenate(shuffled_portion_ds)
+  return final_shuffled_ds
 
-# print(datetime.datetime.now().hour)
+print(datetime.datetime.now().hour)
 
 print(f'''on: [Function: socketListenerWrap],
     addListener: [Function: socketListenerWrap],
@@ -109,16 +109,16 @@ print(f'''on: [Function: socketListenerWrap],
     connection: 'keep-alive',
     'content-type': 'application/json',''')
 
-# from openai import OpenAI
+from openai import OpenAI
 
-# api_key = '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'
-# client = OpenAI(api_key=api_key)
+api_key = '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'
+client = OpenAI(api_key=api_key)
 
-# stream = client.chat.completions.create(
-#     model="text-davinci-003",
-#     messages=[{"role": "user", "content": "Say this is a test"}],
-#     stream=True,
-# )
-# for chunk in stream:
-#     if chunk.choices[0].delta.content is not None:
-#         print(chunk.choices[0].delta.content, end="")
+stream = client.chat.completions.create(
+    model="text-davinci-003",
+    messages=[{"role": "user", "content": "Say this is a test"}],
+    stream=True,
+)
+for chunk in stream:
+    if chunk.choices[0].delta.content is not None:
+        print(chunk.choices[0].delta.content, end="")

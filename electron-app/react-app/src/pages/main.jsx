@@ -1,102 +1,110 @@
 import React from "react";
 import { useState, useRef, useEffect } from "react";
-import * as d3 from 'd3';
+import { Outlet, NavLink } from 'react-router-dom'
 import '../static/css/Main.css';
 
 
-
-const TreeDiagram = ({ data }) => {
-    const d3Container = useRef(null);
-     // new comment
-    useEffect(() => {
-      if (data && d3Container.current) {
-        // Container cleanup
-        d3.select(d3Container.current).selectAll("*").remove();
-  
-        const margin = { top: 50, right: 90, bottom: 30, left: 90 };
-        const width = 960 - margin.left - margin.right;
-        const height = 500 - margin.top - margin.bottom;
-  
-        const svg = d3.select(d3Container.current)
-          .attr("width", width + margin.right + margin.left)
-          .attr("height", height + margin.top + margin.bottom)
-          .append("g")
-          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-  
-        // Convert the data to a hierarchy
-        const root = d3.hierarchy(data, d => d.friends);
-  
-        // Create the tree layout
-        const treeLayout = d3.tree().size([height, width]);
-        treeLayout(root);
-  
-        // Draw the links (curved for a modern look)
-        const link = svg.selectAll(".link")
-          .data(root.links())
-          .enter().append("path")
-          .attr("class", "link")
-          .style("fill", "none")
-          .style("stroke", "#ffab00") // Styling to match the provided image
-          .style("stroke-width", 3)
-          .attr("d", d => {
-            return "M" + d.source.y + "," + d.source.x
-              + "C" + (d.source.y + d.target.y) / 2 + "," + d.source.x
-              + " " + (d.source.y + d.target.y) / 2 + "," + d.target.x
-              + " " + d.target.y + "," + d.target.x;
-          });
-  
-        // Draw the nodes
-        const node = svg.selectAll(".node")
-          .data(root.descendants())
-          .enter().append("g")
-          .attr("class", d => "node" + (d.children ? " node--internal" : " node--leaf"))
-          .attr("transform", d => "translate(" + d.y + "," + d.x + ")");
-  
-        node.append("circle")
-          .attr("r", 15) // Radius to match the provided image
-          .style("fill", "#1c7ed6"); // Node color to match the provided image
-  
-        node.append("text")
-          .attr("dy", ".35em")
-          .attr("x", d => d.children ? -20 : 20)
-          .style("text-anchor", d => d.children ? "end" : "start")
-          .text(d => d.data.fname + ' ' + d.data.lname)
-          .style("fill", "#333"); // Text color to match the provided image
-      }
-    }, [data]);
-  
-    return (
-      <svg ref={d3Container} className="tree-container" />
-    );
-  };
-
-  
+function Notifaction({refNot, not, setNot}){
+  function showNotifaction(){
+    setNot(!not);
+    if(not){
+      refNot.current.style.right = '0px';
+    }else{
+      refNot.current.style.right = '-355px';
+    }
+  }
+  return(
+    <div className="notifaction-screen" ref={refNot}>
+      <div className="header">
+        <i class="fa fa-close" onClick={showNotifaction}></i>
+      </div>
+    </div>
+  )
+}
 
 export default function Main(){
     const [user, setUser] = useState({username:'', token:'', isadmin:false});
-    let students = {
-        fname:'muxtar',
-        lname:'bayramov',
-        city:'baki',
-        avto:['Bmw x6', 'Kia optima'],
-        friends:[
-            {
-                fname:'veli',
-                lname:'qurbanov',
-                city:'seki',
-                avto:['Bmw x6', 'Kia optima'],
-                friends:[]
-            }
-        ]
-    }
+    const [not, setNot] = useState(true)
+    const notifaction = useRef();
+
     window.USER.download((event, data)=>{
         setUser(JSON.parse(data))
     })
+
+    function showNotifaction(){
+      setNot(!not)
+      if(not){
+        notifaction.current.style.right = '0px';
+      }else{
+        notifaction.current.style.right = '-355px';
+      }
+    }
+
     return(
-        <div className="">
-            {/* <header>{username}</header> */}
-            <div className="body">
-                <div className="chat">user =={user.username}</div>
+        <div className="main-page">
+            <header>
+              <div className="program-name">
+                Deep Analisys
+              </div>
+                <div className="user">
+                    <div className="notifaction">
+                      <div className="icons deactive">
+                        <i className="fa-solid fa-message"></i>
+                        <p className="message">no active</p>
+                      </div>
+                      {user.isadmin ? 
+                        <div className="icons deactive">
+                          <i className="fas fa-tasks"></i>
+                          <p className="message">no active</p>
+                        </div>
+                      :null}
+                      {user.isadmin ? 
+                        <div className="icons deactive">
+                          <i className="fa-solid fa-users"></i>
+                          <p className="message">no active</p>
+                        </div>
+                      : null}
+                      <div className="icons" onClick={showNotifaction}>
+                        <i className="fa-solid fa-bell"></i>
+                        <p className="message">Notifaction</p>
+                      </div>
+
+                      {user.isadmin ? 
+                        <NavLink className="icons" to='edit-sql'>
+                          <i className="fa-solid fa-database"></i>
+                          <p className="message">Sql work</p>
+                        </NavLink>
+                      :null}
+                      
+                      <div className="icons">
+                        <i class="fas fa-sign-out" onClick={()=>{
+                            window.EXIT.send();
+                        }}></i>
+                        <p className="message">Exit</p>
+                      </div>
+                      <div className="icons username">
+                        <i className="fa-solid fa-user"></i>
+                        <p className="message">{user.username}</p>
+                      </div>
+                    </div>
+                </div>
+            </header>
+            <div className="search">
+                <div className="form-search">
+                  <form action="">
+                    <div>
+                      <input type="text" style={{borderColor:'rgb(200, 200, 200)', padding:'2px 2px 2px 5px', fontSize:'13px'}} placeholder="Search"/>
+                    </div>
+                    <div style={{display:'flex'}}>
+                        <NavLink to='tree' className="btn btn-primary" style={{fontSize:'12px', padding:'2px 10px', borderRadius:'0px', marginRight:'2px'}}>Tree</NavLink>
+                        <NavLink to='graph' className="btn btn-primary" style={{fontSize:'12px', padding:'2px 10px', borderRadius:'0px'}}>Graph</NavLink>
+                    </div>
+                  </form>
+                </div>
+                <div className="content">
+                  <Outlet />
+                  <Notifaction refNot={notifaction} not={not} setNot={setNot} />
+                </div>
             </div>
         </div>
     )
