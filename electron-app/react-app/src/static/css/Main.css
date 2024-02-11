@@ -149,15 +149,6 @@ div.search > div.form-search > form > div > input{
 }
 
 div.search > div.content{
-    height: 100%;
-}
-
-div.search > div.content > div.in-div{
-    height: 100%;
-    border: 1px solid red;
-    position: fixed;
-    width: 100%;
-    top: 90px;
 }
 /* ------------------------------------------------------------ */
 div.content{

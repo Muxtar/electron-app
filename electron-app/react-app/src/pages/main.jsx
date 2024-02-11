@@ -90,17 +90,6 @@ export default function Main(){
                 </div>
             </header>
             <div className="search">
-                <div className="form-search">
-                  <form action="">
-                    <div>
-                      <input type="text" style={{borderColor:'rgb(200, 200, 200)', padding:'2px 2px 2px 5px', fontSize:'13px'}} placeholder="Search"/>
-                    </div>
-                    <div style={{display:'flex'}}>
-                        <NavLink to='tree' className="btn btn-primary" style={{fontSize:'12px', padding:'2px 10px', borderRadius:'0px', marginRight:'2px'}}>Tree</NavLink>
-                        <NavLink to='graph' className="btn btn-primary" style={{fontSize:'12px', padding:'2px 10px', borderRadius:'0px'}}>Graph</NavLink>
-                    </div>
-                  </form>
-                </div>
                 <div className="content">
                   <Outlet />
                   <Notifaction refNot={notifaction} not={not} setNot={setNot} />

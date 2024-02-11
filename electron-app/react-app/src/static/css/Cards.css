@@ -1,0 +1,120 @@
+
+:root{
+    --back: #34375b;
+    --front: #212342;
+}
+
+div.main-cards{
+    padding: 10px;
+    border-radius: none;
+}
+
+div.cards{
+    height: max-content;
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+    border-radius: 0 !important;
+
+}
+
+div.cards > div.card{
+    padding: 10px;
+    width: 25%;
+    min-width: 300px;
+    min-height: 450px;
+    border-radius: 0;
+    border-radius: 5px;
+    border: none;
+}
+
+div.card-content{
+    height: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid rgb(200, 200, 200);
+    box-shadow: 0 0 5px 0 rgb(200, 200, 200);
+}
+
+div.card-content > div{
+}
+/* ---------------CARD HEAD--------------------------- */
+div.card-content > div.content-head{
+    height: 30%;
+}
+div.card-content > div.content-head > div{
+    padding: 10px;
+}
+
+div.content-head > div.check-table{
+    display: flex;
+    justify-content: right;
+}
+
+div.content-head > div.check-table > i{
+    font-size: 20px;
+    color: #5a2bc1;
+    cursor: pointer;
+}
+div.content-head > div.check-table > i:hover{
+    color: blue;
+}
+
+div.content-head > div.table-name{
+    text-align: center;
+    color: black;
+}
+
+/* ----------------CARD BODY-------------------------- */
+div.card-content > div.content-body{
+    height: 70%;
+    position: relative;
+}
+div.content-body > div.column{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 0.5px solid #5a2bc1;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+div.content-body > div.delete-dublicate{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+div.content-body > div.delete-dublicate > button{
+    border: none;
+    width: 100%;
+    background-color: white;
+    border: 1px solid #5a2bc1;
+    padding: 8px;
+    margin: 8px;
+}
+
+div.content-body > div.column > div.column-name{
+    flex-grow: 1;
+}
+
+div.content-body > div.column > i{
+    width: 20px;
+    height: 20px;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #5a2bc1;
+}
+
+div.content-body > div.column > i.fa-edit{
+    cursor: pointer;
+}
+
+div.content-body > div.column > i.fa-edit:hover{
+    /* background-color: red;    */
+    background-color:tomato;
+}
