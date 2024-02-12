@@ -61,23 +61,6 @@ ipcMain.on('exit', (event, data)=>{
     }
 })
 
-ipcMain.on('sqlQuery', (event, data)=>{
-    // console.log(data)
-    fetch('http://127.0.0.1:8000/sql-query', {
-                method:'POST',
-                headers:{
-                    'Content-Type':'application/text-plain'
-                },
-                body:JSON.stringify(data)
-            }).then(data => {
-                return data.json()
-            }).then(data => {
-                console.log(data)
-            }).catch(()=>{
-                console.log('error yarandi')
-            })
-})
-
 const loginTemplate = []
 const mainTemplate = [
     {
@@ -116,7 +99,7 @@ function createMainWindow(){
 
     mainWindow.on('ready-to-show', ()=>{
         mainWindow.show()
-        mainWindow.webContents.send('user', JSON.stringify({username:user.username, isadmin:user.isadmin}));
+        mainWindow.webContents.send('user', JSON.stringify({username:user.username, isadmin:user.isadmin, secretKey:secretKey}));
     })
 }
 

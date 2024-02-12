@@ -37,6 +37,7 @@ div.card-content{
 }
 
 div.card-content > div{
+    /* border: 1px solid red; */
 }
 /* ---------------CARD HEAD--------------------------- */
 div.card-content > div.content-head{
@@ -61,8 +62,15 @@ div.content-head > div.check-table > i:hover{
 }
 
 div.content-head > div.table-name{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    color: black;
+    /* color: black;
+    border: 1px solid  rgb(230, 230, 230); */
+    margin-top: 20px;
+    /* background-color: green;
+    color: white; */
 }
 
 /* ----------------CARD BODY-------------------------- */
@@ -74,7 +82,7 @@ div.content-body > div.column{
     display: flex;
     align-items: center;
     padding: 10px;
-    border: 0.5px solid #5a2bc1;
+    border: 0.1px solid rgb(200, 200, 200);
     margin-bottom: 5px;
     border-radius: 4px;
     cursor: pointer;
@@ -98,23 +106,30 @@ div.content-body > div.delete-dublicate > button{
 
 div.content-body > div.column > div.column-name{
     flex-grow: 1;
+    font-size: 13px;
 }
 
 div.content-body > div.column > i{
     width: 20px;
     height: 20px;
-    font-size: 15px;
+    font-size: 13px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #5a2bc1;
+    color: white;
+    background-color: green;
+    border-radius: 50%;
 }
 
-div.content-body > div.column > i.fa-edit{
+div.content-body > div.column > i.fa-x{
     cursor: pointer;
+    background-color: red;
+    color: white;
+
 }
 
 div.content-body > div.column > i.fa-edit:hover{
     /* background-color: red;    */
-    background-color:tomato;
+    background-color:rgb(153, 0, 0);
+    box-shadow: 0 0 5px 0 red;
 }

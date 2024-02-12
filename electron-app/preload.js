@@ -19,11 +19,11 @@ contextBridge.exposeInMainWorld('DOWNLOAD', {
 contextBridge.exposeInMainWorld('USER', {
     download: (data) =>{
         ipcRenderer.on('user', data)
+        console.log(data)
     }
 })
 
 // check sql
-
 contextBridge.exposeInMainWorld('SQLQUERY', {
     send : (sqlQuery) => {
         ipcRenderer.send('sqlQuery', sqlQuery);

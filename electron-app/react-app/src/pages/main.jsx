@@ -1,8 +1,8 @@
 import React from "react";
 import { useState, useRef, useEffect } from "react";
 import { Outlet, NavLink } from 'react-router-dom'
+import { MyContext } from "./myContext";
 import '../static/css/Main.css';
-
 
 function Notifaction({refNot, not, setNot}){
   function showNotifaction(){
@@ -23,7 +23,7 @@ function Notifaction({refNot, not, setNot}){
 }
 
 export default function Main(){
-    const [user, setUser] = useState({username:'', token:'', isadmin:false});
+    const [user, setUser] = useState({token:'', isadmin:false, secretKey:''});
     const [not, setNot] = useState(true)
     const notifaction = useRef();
 
@@ -41,6 +41,7 @@ export default function Main(){
     }
 
     return(
+      <MyContext.Provider value={{user:user}}>
         <div className="main-page">
             <header>
               <div className="program-name">
@@ -96,5 +97,6 @@ export default function Main(){
                 </div>
             </div>
         </div>
+      </MyContext.Provider>
     )
 }
