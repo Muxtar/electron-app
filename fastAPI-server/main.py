@@ -46,19 +46,28 @@ async def emeliyyat_aciqlama(request:Request):
 
 @app.post('/Audit')
 async def audit(request:Request):
-    user = await request.json()
-    response = {}
-    if(checkData):
-        with pyodbc.connect(conn_string) as sql:
-            cr = sql.cursor()
-            cr.execute("SELECT * FROM dbo.Audit WHERE Voen_Alma_Tarixi LIKE '%/%'")
-            response['Voen_Alma_Tarixi'] = bool(cr.fetchall())    
-            cr.execute("SELECT * FROM dbo.Audit WHERE EDV_Qeydiyyat_Tarixi LIKE '%/%'")
-            response['EDV_Qeydiyyat_Tarixi'] = bool(cr.fetchall())
+    # WITH DuplicateRows AS (
+    #     SELECT *,
+    #             ROW_NUMBER() OVER (PARTITION BY 
+    #             [VOEN]
+    #             ORDER BY INSERTED_DATE desc) AS RowNum
+    #     FROM dbo.Audit
+    # )DELETE FROM DuplicateRows WHERE RowNum > 1;
 
-            print(response)
-            return response
-            
+    user = await request.json()
+    if checkData(user):
+        if request.url == 'http://127.0.0.1:8000/Audit':
+            print(request.url)
+            # response = {}
+            # with pyodbc.connect(conn_string) as sql:
+            #     cr = sql.cursor()
+            #     cr.execute("SELECT * FROM dbo.Audit WHERE Voen_Alma_Tarixi LIKE '%/%'")
+            #     response['Voen_Alma_Tarixi'] = bool(cr.fetchall())    
+            #     cr.execute("SELECT * FROM dbo.Audit WHERE EDV_Qeydiyyat_Tarixi LIKE '%/%'")
+            #     response['EDV_Qeydiyyat_Tarixi'] = bool(cr.fetchall())
+            #     return response
+        else:
+            print(request.query_params.get('column'))
     return 'Permission error'
 
 

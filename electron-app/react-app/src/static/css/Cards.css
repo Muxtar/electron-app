@@ -34,11 +34,14 @@ div.card-content{
     border-radius: 5px;
     border: 1px solid rgb(200, 200, 200);
     box-shadow: 0 0 5px 0 rgb(200, 200, 200);
+    /* cursor: pointer; */
 }
 
-div.card-content > div{
-    /* border: 1px solid red; */
+div.card-content:hover{
+    box-shadow: 0 0 10px 0 rgb(200, 200, 200);;
 }
+
+
 /* ---------------CARD HEAD--------------------------- */
 div.card-content > div.content-head{
     height: 30%;
@@ -66,11 +69,7 @@ div.content-head > div.table-name{
     align-items: center;
     justify-content: center;
     text-align: center;
-    /* color: black;
-    border: 1px solid  rgb(230, 230, 230); */
     margin-top: 20px;
-    /* background-color: green;
-    color: white; */
 }
 
 /* ----------------CARD BODY-------------------------- */
@@ -85,8 +84,9 @@ div.content-body > div.column{
     border: 0.1px solid rgb(200, 200, 200);
     margin-bottom: 5px;
     border-radius: 4px;
-    cursor: pointer;
 }
+
+
 div.content-body > div.delete-dublicate{
     display: flex;
     justify-content: center;

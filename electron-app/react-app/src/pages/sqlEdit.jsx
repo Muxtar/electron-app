@@ -56,7 +56,7 @@ function CardEmeliyyat(){
 
                 <div className="content-head">
                     <div className="check-table">
-                        <i class="fas fa-sync" onClick={checkEmeliyyatAciqlama}></i> 
+                        <i className="fas fa-sync" onClick={checkEmeliyyatAciqlama}></i> 
                     </div>
                     <div className="table-name">
                         <p style={{margin:'0'}}>Emeliyyat_aciqlama</p>
@@ -66,7 +66,7 @@ function CardEmeliyyat(){
                 <div className="content-body">
                     <div className="column">
                         <div className="column-name">Tarix column</div>
-                        <i class="fas fa-sync" ref={tarixIcon} onClick={editTarix}></i>
+                        <i className="fas fa-sync" ref={tarixIcon} onClick={editTarix}></i>
                     </div>
                     <div className="delete-dublicate">
                         <button disabled>Not Delete Dublicate</button>
@@ -80,7 +80,7 @@ function CardEmeliyyat(){
 function CardAudit(){
     const table = {
         name:'Audit',
-        columns:['Voen_Alma_Tarixi column', 'EDV_Qeydiyyat_Tarixi column'],
+        columns:['Voen_Alma_Tarixi', 'EDV_Qeydiyyat_Tarixi'],
         deleteDublicate:true,
         link:function(){
             return `http://127.0.0.1:8000/${this.name}`
@@ -89,9 +89,9 @@ function CardAudit(){
     
     const {user} = useContext(MyContext);
     const refArray = table.columns.map(data => React.createRef())
-    const refs = useRef(refArray);
 
     function checkColumns(e){
+        e.target.className = 'fas fa-sync fa-spin'
         refArray.forEach(element => {
             element.current.className = 'fas fa-sync fa-spin';
         });
@@ -104,21 +104,48 @@ function CardAudit(){
         }).then(data => {
             return data.json();
         }).then(data => {
-            refArray.forEach(element => {
-                element.current.className = 'fas fa-sync';
-            });
+            e.target.className = 'fas fa-sync'
+            for(let i of refArray){
+                if(!data[i.current.getAttribute('name')]){
+                    i.current.className = 'fa-solid fa-check';
+                }else{
+                    i.current.className = 'fas fa-x';
+                }
+            }
         }).catch(error => {
             console.log('error yarandi')
         })
     }
 
+    const editColumn = (columnName, refTag) => {
+        if(refTag.current.className == 'fas fa-x'){
+            refTag.current.className = 'fas fa-sync fa-spin';
+            const link = `${table.link()}?column=${columnName}`
+            fetch(link, {
+                method:'POST',
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body:JSON.stringify(user)
+            }).then(data => {
+                return data.json()
+            }).then(data => {
+                refTag.current.className = '';
+            }).catch(error => {
+                console.log('error yarandi')
+            })
+        }
+        else{
+            console.log('islemedi')
+        }
+    }
     return(
         <div className="card">
              <div className="card-content">
 
                 <div className="content-head">
                     <div className="check-table">
-                        <i class="fas fa-sync" onClick={checkColumns}></i> 
+                        <i className="fas fa-sync" onClick={checkColumns}></i> 
                     </div>
                     <div className="table-name">
                         <p style={{margin:'0'}}>{table.name}</p>
@@ -131,7 +158,7 @@ function CardAudit(){
                             return(
                                 <div className="column" key={index}>
                                     <div className="column-name">{value}</div>
-                                    <i class="fas fa-sync" ref={refs[index]}></i>
+                                    <i className="fas fa-sync" ref={refArray[index]} name={table.columns[index]} onClick={editColumn.bind(this, table.columns[index], refArray[index])}></i>
                                 </div>
                                 )       
                         })

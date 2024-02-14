@@ -51,7 +51,6 @@ app.post('/login', (req, res)=>{
     const user = authenticated({username:username, password:password});
     if(user && token == secretKey){
         user['secretKey'] = secretKey;
-        console.log(user)
         res.status(200).send({message:'success', user:user})
     }else{
         res.status(404).send({message:'error'})
