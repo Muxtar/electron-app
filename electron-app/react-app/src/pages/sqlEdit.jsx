@@ -77,17 +77,9 @@ function CardEmeliyyat(){
     )
 }
 
-function CardAudit(){
-    const table = {
-        name:'Audit',
-        columns:['Voen_Alma_Tarixi', 'EDV_Qeydiyyat_Tarixi'],
-        deleteDublicate:true,
-        link:function(){
-            return `http://127.0.0.1:8000/${this.name}`
-        }
-    }
-    
+function Card({table}){    
     const {user} = useContext(MyContext);
+    const trash = useRef();
     const refArray = table.columns.map(data => React.createRef())
 
     function checkColumns(e){
@@ -95,6 +87,7 @@ function CardAudit(){
         refArray.forEach(element => {
             element.current.className = 'fas fa-sync fa-spin';
         });
+
         fetch(table.link(), {
             method:'POST',
             headers:{
@@ -113,14 +106,17 @@ function CardAudit(){
                 }
             }
         }).catch(error => {
-            console.log('error yarandi')
+            e.target.className = 'fas fa-sync'
+            for(let i of refArray){
+                i.current.className = 'fas fa-x';
+            }
         })
     }
-
     const editColumn = (columnName, refTag) => {
         if(refTag.current.className == 'fas fa-x'){
             refTag.current.className = 'fas fa-sync fa-spin';
-            const link = `${table.link()}?column=${columnName}`
+            const link = `${table.link()}?column=${columnName}`;
+
             fetch(link, {
                 method:'POST',
                 headers:{
@@ -130,7 +126,7 @@ function CardAudit(){
             }).then(data => {
                 return data.json()
             }).then(data => {
-                refTag.current.className = '';
+                refTag.current.className = 'fa-solid fa-check';
             }).catch(error => {
                 console.log('error yarandi')
             })
@@ -139,10 +135,28 @@ function CardAudit(){
             console.log('islemedi')
         }
     }
+    const deleteDublicate = (e) => {
+        console.log(e.target)
+        trash.current.className = 'fas fa-sync fa-spin';
+        const link = `${table.link()}?delete=dublicate`;
+        fetch(link, {
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify(user)
+        }).then(data => {
+            return data.json()
+        }).then(data => {
+            trash.current.className = 'fa-solid fa-check';
+        }).catch(error => {
+            console.log('error yarandi')
+        })
+    }
+
     return(
         <div className="card">
              <div className="card-content">
-
                 <div className="content-head">
                     <div className="check-table">
                         <i className="fas fa-sync" onClick={checkColumns}></i> 
@@ -163,8 +177,14 @@ function CardAudit(){
                                 )       
                         })
                     }
+                   
+                </div>
+
+                <div className="content-footer">
                     <div className="delete-dublicate">
-                        <button disabled={table.deleteDublicate == false ? true : false}>Delete Dublicate</button>
+                        <button disabled={table.deleteDublicate == false ? true : false} onClick={deleteDublicate}>Delete Dublicate
+                            <i class="fa-solid fa-trash" style={{marginLeft:"10px"}} ref={trash}></i>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -173,11 +193,115 @@ function CardAudit(){
 }
 
 function Cards(){
+    const tableAudit = {
+        name:'Audit',
+        columns:['Voen_Alma_Tarixi', 'EDV_Qeydiyyat_Tarixi'],
+        deleteDublicate:true,
+        link:function(){
+            return `http://127.0.0.1:8000/${this.name}`
+        }
+    }
+    const tableObyekt = {
+        name:'Obyekt',
+        columns:[
+                    'Icare_Muqavile_Tarixi', 
+                    'Sened_Tarixi',
+                    'Natarius_Sened_Tarixi',
+                    'Qeydiyyat_Tarixi',
+                    'Qeydiyyatdan_cixma_tarixi',
+                ],
+        deleteDublicate:true,
+        link:function(){
+            return `http://127.0.0.1:8000/${this.name}`
+        }
+    }
+    const tableEmeliyyatAciqlama = {
+        name:'Emeliyyat_aciqlama',
+        columns:['Tarix'],
+        deleteDublicate:false,
+        link:function(){
+            return `http://127.0.0.1:8000/${this.name}`
+        }
+    }
+    const tableRehberTesisci = {
+        name:'Rehber_Tesisci',
+        columns:[
+                    'Rehber_FIN',
+                    'Tesisci_PIN',
+                    'Tesisci_VOEN',
+                    'Tesisci_PIN',
+                    'R_CODE',
+                    'T_CODE'
+                ],
+        deleteDublicate:true,
+        link:function(){
+            return `http://127.0.0.1:8000/${this.name}`
+        }
+    }
+    const tableEmeliyyatLegv = {
+        name:'Emeliyyat_Legv',
+        columns:[
+                    'Legv_Tarix'
+                ],
+        deleteDublicate:false,
+        link:function(){
+            return `http://127.0.0.1:8000/${this.name}`
+        }
+    }
+    const tableIshci = {
+        name:'Ishci',
+        columns:[
+                    'Bildirish_tarixi',
+                    'Bashlama_bashlama_tarixi',
+                    'Muqavilenin_bitme_tarixi',
+                    'Ishci_doqum_tarixi'
+                ],
+        deleteDublicate:true,
+        link:function(){
+            return `http://127.0.0.1:8000/${this.name}`
+        }
+    }
+    const tableAlishAkti = {
+        name:'Alish_Akti',
+        columns:[
+                    'Tarix'
+                ],
+        deleteDublicate:false,
+        link:function(){
+            return `http://127.0.0.1:8000/${this.name}`
+        }
+    }
+    const tableAvtomobil = {
+        name:'Avtomobil',
+        columns:[
+                    'Qeydiyyat_Tarixi',
+                    'Etibar_Verilme_Tarixi'
+                ],
+        deleteDublicate:true,
+        link:function(){
+            return `http://127.0.0.1:8000/${this.name}`
+        }
+    }
+    const tableEmlak = {
+        name:'Emlak',
+        columns:[
+                    'Daxil_Olma_Tarixi',
+                    'Cap_Tarixi'
+                ],
+        deleteDublicate:false,
+        link:function(){
+            return `http://127.0.0.1:8000/${this.name}`
+        }
+    }
+
     return(
         <div className="main-cards">
             <div className="cards">
-                <CardEmeliyyat />
-                <CardAudit />
+                <Card table = {tableEmeliyyatAciqlama}/>
+                <Card table = {tableEmeliyyatLegv}/>
+                <Card table = {tableObyekt}/>
+                <Card table = {tableAudit}/>
+                <Card table = {tableRehberTesisci}/>
             </div>
         </div>
     )
@@ -193,3 +317,4 @@ export default function SqlEdit(){
         </div>
     )
 }
+

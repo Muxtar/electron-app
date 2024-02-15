@@ -14,7 +14,8 @@ div.cards{
     display: flex;
     justify-content: left;
     flex-wrap: wrap;
-    border-radius: 0 !important;
+    border-radius: 5px !important;
+    border: 1px solid rgb(200, 200, 200);
 
 }
 
@@ -37,6 +38,10 @@ div.card-content{
     /* cursor: pointer; */
 }
 
+div.card-content > div{
+    /* border: 1px solid red; */
+}
+
 div.card-content:hover{
     box-shadow: 0 0 10px 0 rgb(200, 200, 200);;
 }
@@ -44,7 +49,7 @@ div.card-content:hover{
 
 /* ---------------CARD HEAD--------------------------- */
 div.card-content > div.content-head{
-    height: 30%;
+    height: 25%;
 }
 div.card-content > div.content-head > div{
     padding: 10px;
@@ -69,13 +74,16 @@ div.content-head > div.table-name{
     align-items: center;
     justify-content: center;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 /* ----------------CARD BODY-------------------------- */
 div.card-content > div.content-body{
-    height: 70%;
+    height: 60%;
     position: relative;
+    padding: 5px;
+    /* border: 1px solid red; */
+    overflow-y: scroll;
 }
 div.content-body > div.column{
     display: flex;
@@ -85,23 +93,26 @@ div.content-body > div.column{
     margin-bottom: 5px;
     border-radius: 4px;
 }
-
-
-div.content-body > div.delete-dublicate{
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    bottom: 0;
+div.content-footer{
+    box-sizing: border-box;
+    height: 15%;
+    position: relative;
+}
+div.content-footer > div.delete-dublicate{
+    position: relative;
+    box-sizing: border-box;
     width: 100%;
 }
 
-div.content-body > div.delete-dublicate > button{
-    border: none;
+div.content-footer > div.delete-dublicate > button{
     width: 100%;
+    box-sizing: border-box;
+    border: none;
     background-color: white;
     border: 1px solid #5a2bc1;
     padding: 8px;
-    margin: 8px;
+    position: absolute;
+    top: 15px;
 }
 
 div.content-body > div.column > div.column-name{
