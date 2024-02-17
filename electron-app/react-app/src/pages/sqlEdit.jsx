@@ -3,80 +3,6 @@ import { useContext } from "react";
 import { MyContext } from "./myContext";
 import '../static/css/Cards.css'
 
-function CardEmeliyyat(){
-    const tarixIcon = useRef();
-    const {user} = useContext(MyContext);
-   
-    function editTarix(e){
-        if(tarixIcon.current.className == 'fas fa-x'){
-            tarixIcon.current.className = 'fas fa-sync fa-spin';
-            fetch('http://127.0.0.1:8000/emeliyyat-aciqlama?edit=Tarix', {
-                method:'POST',
-                headers:{
-                    'Content-Type':'application/json'
-                },
-                body:JSON.stringify(user)
-            }).then(data => {
-                return data.json()
-            }).then(data => {
-                tarixIcon.current.className = 'fa-solid fa-check';
-            }).catch(error => {
-                console.log('error isledi')
-            })
-        }
-    }
-
-    function checkEmeliyyatAciqlama(e){
-        e.target.className = "fas fa-sync fa-spin";
-        tarixIcon.current.className = 'fas fa-sync fa-spin';
-
-        fetch('http://127.0.0.1:8000/emeliyyat-aciqlama', {
-            method:'POST',
-            headers:{
-                'Content-Type':'application/json'
-            },
-            body:JSON.stringify(user)
-        }).then(data => {
-            return  data.json()
-        }).then(data => {
-            if(!data['Tarix']){
-                tarixIcon.current.className = 'fa-solid fa-check';
-            }else{
-                tarixIcon.current.className = "fas fa-x"
-            }
-            e.target.className = 'fas fa-sync'
-        }).catch(data => {
-
-        })
-    }
-
-    return(
-        <div className="card">
-             <div className="card-content">
-
-                <div className="content-head">
-                    <div className="check-table">
-                        <i className="fas fa-sync" onClick={checkEmeliyyatAciqlama}></i> 
-                    </div>
-                    <div className="table-name">
-                        <p style={{margin:'0'}}>Emeliyyat_aciqlama</p>
-                    </div>
-                </div>
-
-                <div className="content-body">
-                    <div className="column">
-                        <div className="column-name">Tarix column</div>
-                        <i className="fas fa-sync" ref={tarixIcon} onClick={editTarix}></i>
-                    </div>
-                    <div className="delete-dublicate">
-                        <button disabled>Not Delete Dublicate</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    )
-}
-
 function Card({table}){    
     const {user} = useContext(MyContext);
     const trash = useRef();
@@ -97,6 +23,7 @@ function Card({table}){
         }).then(data => {
             return data.json();
         }).then(data => {
+            console.log(data)
             e.target.className = 'fas fa-sync'
             for(let i of refArray){
                 if(!data[i.current.getAttribute('name')]){
@@ -183,7 +110,7 @@ function Card({table}){
                 <div className="content-footer">
                     <div className="delete-dublicate">
                         <button disabled={table.deleteDublicate == false ? true : false} onClick={deleteDublicate}>Delete Dublicate
-                            <i class="fa-solid fa-trash" style={{marginLeft:"10px"}} ref={trash}></i>
+                            <i className="fa-solid fa-trash" style={{marginLeft:"10px"}} ref={trash}></i>
                         </button>
                     </div>
                 </div>
@@ -248,6 +175,7 @@ function Cards(){
             return `http://127.0.0.1:8000/${this.name}`
         }
     }
+
     const tableIshci = {
         name:'Ishci',
         columns:[
@@ -302,6 +230,10 @@ function Cards(){
                 <Card table = {tableObyekt}/>
                 <Card table = {tableAudit}/>
                 <Card table = {tableRehberTesisci}/>
+                <Card table = {tableIshci}/>
+                <Card table={tableAlishAkti} />
+                <Card table={tableAvtomobil} />
+                <Card table={tableEmlak}/>
             </div>
         </div>
     )
@@ -311,6 +243,7 @@ export default function SqlEdit(){
     function senSqlQuery(){
         window.SQLQUERY.send('sql-query-test')
     }
+
     return(
         <div className="in-div-cards">
             <Cards />
@@ -318,3 +251,4 @@ export default function SqlEdit(){
     )
 }
 
+console.log(!window.navigator.onLine)

@@ -10,27 +10,55 @@ div.main-cards{
 }
 
 div.cards{
+    /* width: max; */
     height: max-content;
+    min-width: 400px;
     display: flex;
-    justify-content: left;
     flex-wrap: wrap;
     border-radius: 5px !important;
-    border: 1px solid rgb(200, 200, 200);
+    border: 1px solid rgb(240, 240, 240);
 
 }
 
 div.cards > div.card{
     padding: 10px;
-    width: 25%;
-    min-width: 300px;
-    min-height: 450px;
+    width: 20%;
+    display: flex;
+    min-height: 450px; 
     border-radius: 0;
     border-radius: 5px;
     border: none;
 }
 
+
+
+@media screen and (max-width: 1300px) {
+    div.cards > div.card{
+        width: 25%;
+    }
+}
+
+@media screen and (max-width: 1050px) {
+    div.cards > div.card{
+        width: 33.33333%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    div.cards > div.card{
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    div.cards > div.card{
+        width: 100%;
+    }
+}
+
 div.card-content{
-    height: 100%;
+    /* min-width: 250px; */
+    height: 90%;
     padding: 10px;
     border-radius: 5px;
     border: 1px solid rgb(200, 200, 200);
@@ -75,6 +103,8 @@ div.content-head > div.table-name{
     justify-content: center;
     text-align: center;
     margin-top: 10px;
+    /* font-weight: bold; */
+    color: red;
 }
 
 /* ----------------CARD BODY-------------------------- */
@@ -85,19 +115,22 @@ div.card-content > div.content-body{
     /* border: 1px solid red; */
     overflow-y: scroll;
 }
+
 div.content-body > div.column{
     display: flex;
     align-items: center;
     padding: 10px;
-    border: 0.1px solid rgb(200, 200, 200);
+    border: 0.1px solid rgb(230, 230, 230);
     margin-bottom: 5px;
     border-radius: 4px;
 }
+
 div.content-footer{
     box-sizing: border-box;
     height: 15%;
     position: relative;
 }
+
 div.content-footer > div.delete-dublicate{
     position: relative;
     box-sizing: border-box;
@@ -109,10 +142,14 @@ div.content-footer > div.delete-dublicate > button{
     box-sizing: border-box;
     border: none;
     background-color: white;
-    border: 1px solid #5a2bc1;
+    border: 1px solid rgb(100, 100, 100);
+    background-color: green;
+    color: white;
+    border-radius: 5px;
     padding: 8px;
     position: absolute;
     top: 15px;
+    cursor: pointer;
 }
 
 div.content-body > div.column > div.column-name{
@@ -127,16 +164,13 @@ div.content-body > div.column > i{
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
-    background-color: green;
+    color: green;
     border-radius: 50%;
 }
 
 div.content-body > div.column > i.fa-x{
     cursor: pointer;
-    background-color: red;
-    color: white;
-
+    color: red;
 }
 
 div.content-body > div.column > i.fa-edit:hover{

@@ -78,7 +78,7 @@ export default function Main(){
                       :null}
                       
                       <div className="icons">
-                        <i class="fas fa-sign-out" onClick={()=>{
+                        <i className="fas fa-sign-out" onClick={()=>{
                             window.EXIT.send();
                         }}></i>
                         <p className="message">Exit</p>
