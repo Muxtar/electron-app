@@ -17,7 +17,8 @@ div.blog1{
 
 div.body{
     height: 100%;
-    color:  blue;}
+    color:  blue;
+}
 
 div.main-page{
     height: 100%;
@@ -27,15 +28,15 @@ div.main-page{
 div.main-page > header{
     display: flex;
     justify-content: right;
-    background-color: var(--input2);
     z-index:1; 
     padding: 2px;
     position: fixed;
     top: 0;
     width: 100%;
+    background-color: white;
+    border-bottom: 1px solid rgb(210, 210, 210);
 }
 div.main-page > header > div{
-    /* border: 1px solid red; */
 }
 
 div.program-name{
@@ -71,6 +72,9 @@ div.notifaction > .icons{
     display: flex;
     justify-content: center;
     align-items: center;
+    color: black !important;
+    background-color: #f6f8ff;
+    border: 1px solid rgb(220, 220, 220);
 }
 
 div.notifaction > .icons > i{
@@ -78,7 +82,6 @@ div.notifaction > .icons > i{
 }
 
 div.notifaction > .icons .fa-database{
-    /* color: rgb(100, 100, 100) !important; */
 }
 
 div.notifaction > div.username{
@@ -97,6 +100,7 @@ div.notifaction > div.deactive > p{
 
 div.notifaction > div.deactive:hover{
     background-color: transparent !important;
+    color: rgb(210, 210, 210) !important;
 }
 
 div.notifaction > div.username:hover{
@@ -104,7 +108,8 @@ div.notifaction > div.username:hover{
 }
 
 div.notifaction > .icons:hover{
-    background-color: rgb(210, 210, 210);
+    background-color: rgb(110, 110, 110);
+    color: white !important;
 }
 
 div.notifaction > .icons > p.message{
@@ -159,6 +164,7 @@ div.content{
     /* position: fixed; */
     width: 100%;
     top: 90px;
+    height: 100%;
 }
 
 div.content > div.notifaction-screen{

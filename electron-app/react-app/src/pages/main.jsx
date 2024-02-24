@@ -65,6 +65,12 @@ export default function Main(){
                           <p className="message">no active</p>
                         </div>
                       : null}
+
+                      <NavLink className="icons" to='analisys'>
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        <p className="message">Analisys</p>
+                      </NavLink>
+                      
                       <div className="icons" onClick={showNotifaction}>
                         <i className="fa-solid fa-bell"></i>
                         <p className="message">Notifaction</p>

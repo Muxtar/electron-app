@@ -3,10 +3,12 @@ import React from "react";
 import { BrowserRouter, HashRouter, Routes, Route } from "react-router-dom";
 import Login from './pages/login';
 import Main from './pages/main';
-import Treejsx from "./pages/tree";
-import Graph from "./pages/graph";
 import SqlEdit from "./pages/sqlEdit";
+import Analisys from "./pages/analisys";
+import Graph from "./pages/graph";
+import Treejsx from "./pages/tree";
 import './App.css';
+import TableAnalisys from "./pages/tableAnalisys";
 
 
 function App() {
@@ -15,8 +17,11 @@ function App() {
       <Routes>
           <Route path='/' element={<Login />} />
           <Route path='/main' element={<Main />}>
-            <Route path='tree' element={<Treejsx />} index={true} />
-            <Route path='graph' element={<Graph />}/>
+            <Route path="analisys" element={<Analisys />}>
+              <Route path="graph" element={<Graph />}/>
+              <Route path="tree" element={<Treejsx />}/>              
+              <Route path="table" element={<TableAnalisys />}/>              
+            </Route>
             <Route path="edit-sql" element={<SqlEdit/>} />
           </Route>
       </Routes>

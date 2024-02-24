@@ -1,0 +1,116 @@
+div.analisys{
+    height: 100%;
+}
+
+div.analisys > div.analisys-head{
+    border-bottom: 1px solid rgb(240, 240, 240);
+    background-color: #f6f8ff;
+    /* height: 14%; */
+    min-height: max-content;
+}
+div.analisys > div.analisys-head > *{
+    height: 100%;
+}
+div.analisys > div.analisys-body{
+    height: 86%;
+}
+div.analisys > div.analisys-body >*{
+    height: 100%;
+}
+
+
+
+div.analisys-link > form{
+    padding: 10px;
+
+}
+
+div.analisys-link > form > div{
+    padding: 10px;
+    border-radius: 5px;
+}
+
+div.analisys-link > form > div.form-head{
+    display: flex;
+    background-color: white;
+    box-shadow: 0 0 2px 0 rgb(200, 200, 200);
+}
+
+div.analisys-link > form > div.form-head > div{
+    margin-right: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+}
+
+div.analisys-link > form > div.form-head > div > a{
+    padding: 10px;
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid rgb(200, 200, 200);
+    background-color: #f6f8ff;
+    transition: 0.1s;
+    text-transform: capitalize;
+    color: black;
+    text-decoration: none;
+    font-size: 12px !important;
+    border-radius: 5px;
+}
+
+div.analisys-link > form > div.form-head > div > a:hover{
+    background-color: #7152eb;
+    color: white;
+}
+
+
+div.analisys-link > form > div.form-head > div i{
+    padding: 3px;
+    display: flex;
+    font-size: 12px;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+div.analisys-link > form > div.form-body{
+    display: flex;
+    align-items: center;
+}
+div.analisys-link > form > div.form-body > div{
+    margin-bottom: 10px;
+}
+
+
+div.analisys-link > form > div.form-body input[type=text]{
+    border: 1px solid rgb(200, 200, 200);
+    font-size: 12px;
+    width: 300px;
+    padding: 5px;
+    padding-left: 15px;
+    outline: none;
+}
+div.analisys-link > form > div.form-body input[type=text]:focus{
+    border-color: #7152eb;
+}
+
+div.analisys-link > form > div.form-body input[type=button]{
+    background-color: #7152eb;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    font-size: 12px;
+}
+
+.active{
+    background-color: #7152eb !important;
+    /* color: white !important; */
+}
+
+.active *{
+    color: white !important;
+}
